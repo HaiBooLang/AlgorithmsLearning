@@ -13,7 +13,7 @@ public:
     explicit UnionFindVector(std::size_t N);
     void Union(int p, int q);
     void Delete(int p, int q);
-    bool isConnected(int p, int q);
+    bool connected(int p, int q);
     int root(int p);
 };
 
@@ -33,7 +33,7 @@ inline int UnionFindVector::root(int p)
     return p;
 }
 
-inline bool UnionFindVector::isConnected(int p, int q)
+inline bool UnionFindVector::connected(int p, int q)
 {
     return root(p) == root(q);
 }

@@ -36,16 +36,16 @@ int main()
         for (int i = 0; i < size; i++) {
             int p = dist(gen);
             int q = dist(gen);
-            uf.isConnected(p, q);
+            uf.connected(p, q);
         }
         end_time = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-        std::cout << "UnionFindUnique: Time taken for isConnected: " << duration << " ms" << std::endl;
+        std::cout << "UnionFindUnique: Time taken for connected: " << duration << " ms" << std::endl;
         isconnected_total_time += duration;
     }
 
     std::cout << "UnionFindUnique: Average time taken for Union: " << union_total_time / times << " ms" << std::endl;
-    std::cout << "UnionFindUnique: Average time taken for isConnected: " << isconnected_total_time / times << " ms" << std::endl;
+    std::cout << "UnionFindUnique: Average time taken for connected: " << isconnected_total_time / times << " ms" << std::endl;
 
     union_total_time = 0;
     isconnected_total_time = 0;
@@ -68,16 +68,16 @@ int main()
         for (int i = 0; i < size; i++) {
             int p = dist(gen);
             int q = dist(gen);
-            uf.isConnected(p, q);
+            uf.connected(p, q);
         }
         end_time = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-        std::cout << "UnionFindVector: Time taken for isConnected: " << duration << " ms" << std::endl;
+        std::cout << "UnionFindVector: Time taken for connected: " << duration << " ms" << std::endl;
         isconnected_total_time += duration;
     }
 
     std::cout << "UnionFindVector: Average time taken for Union: " << union_total_time / times << " ms" << std::endl;
-    std::cout << "UnionFindVector: Average time taken for isConnected: " << isconnected_total_time / times << " ms" << std::endl;
+    std::cout << "UnionFindVector: Average time taken for connected: " << isconnected_total_time / times << " ms" << std::endl;
 
     union_total_time = 0;
     isconnected_total_time = 0;
@@ -100,16 +100,16 @@ int main()
         for (int i = 0; i < size; i++) {
             int p = dist(gen);
             int q = dist(gen);
-            uf.isConnected(p, q);
+            uf.connected(p, q);
         }
         end_time = std::chrono::high_resolution_clock::now();
         duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-        std::cout << "UnionFindArray: Time taken for isConnected: " << duration << " ms" << std::endl;
+        std::cout << "UnionFindArray: Time taken for connected: " << duration << " ms" << std::endl;
         isconnected_total_time += duration;
     }
 
     std::cout << "UnionFindArray: Average time taken for Union: " << union_total_time / times << " ms" << std::endl;
-    std::cout << "UnionFindArray: Average time taken for isConnected: " << isconnected_total_time / times << " ms" << std::endl;
+    std::cout << "UnionFindArray: Average time taken for connected: " << isconnected_total_time / times << " ms" << std::endl;
 
     return 0;
 }

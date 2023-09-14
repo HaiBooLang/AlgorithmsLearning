@@ -14,7 +14,7 @@ public:
     explicit UnionFindUnique(std::size_t N);
     void Union(int p, int q);                       // 将元素 p 所在的集合和元素 q 所在的集合合并
     void Delete(int p, int q);                      // 将元素 p 所在的集合和元素 q 所在的集合分离
-    bool isConnected(int p, int q);                 // 判断元素 p 和元素 q 是否在同一个集合中
+    bool connected(int p, int q);                   // 判断元素 p 和元素 q 是否在同一个集合中
     int root(int p);                                // 查找元素 p 所在的集合的根节点
 };
 
@@ -36,7 +36,7 @@ inline int UnionFindUnique::root(int p) //
     return p;
 }
 
-inline bool UnionFindUnique::isConnected(int p, int q)
+inline bool UnionFindUnique::connected(int p, int q)
 {
     return root(p) == root(q);          // 判断元素 p 和元素 q 所在的集合的根节点是否相同
 }

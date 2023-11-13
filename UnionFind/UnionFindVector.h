@@ -3,70 +3,77 @@
 #include <vector>
 #include <numeric>
 
-class UnionFindVector
-{
-private:
-    std::size_t size = 0;
-    std::vector<int> parent;
-    std::vector<int> rank;
-public:
-    explicit UnionFindVector(std::size_t N);
-    void Union(int p, int q);
-    void Delete(int p, int q);
-    bool connected(int p, int q);
-    int root(int p);
-};
+#include "UnionFInd.h"
 
-inline UnionFindVector::UnionFindVector(std::size_t N)
-    : size{ N }, parent(N), rank(N, 1)
+namespace UnionFind
 {
-    std::iota(parent.begin(), parent.end(), 0);
-}
 
-inline int UnionFindVector::root(int p)
-{
-    while (p != parent[p])
+    class UnionFindVector : public UnionFind
     {
-        parent[p] = parent[parent[p]];
-        p = parent[p];
-    }
-    return p;
-}
+    private:
+        std::size_t size = 0;
+        std::vector<int> parent;
+        std::vector<int> rank;
+    public:
+        explicit UnionFindVector(std::size_t N);
+        void Union(int p, int q);
+        void Delete(int p, int q);
+        bool Connected(int p, int q);
+        int Root(int p);
+    };
 
-inline bool UnionFindVector::connected(int p, int q)
-{
-    return root(p) == root(q);
-}
+    inline UnionFindVector::UnionFindVector(std::size_t N)
+        : size{ N }, parent(N), rank(N, 1)
+    {
+        std::iota(parent.begin(), parent.end(), 0);
+    }
 
-inline void UnionFindVector::Union(int p, int q)
-{
-    int rootP = root(p);
-    int rootQ = root(q);
-    if (rootP == rootQ) return;
-    if (rank[rootP] < rank[rootQ])
+    inline int UnionFindVector::Root(int p)
     {
-        parent[rootP] = rootQ;
-        rank[rootQ] += rank[rootP];
+        while (p != parent[p])
+        {
+            parent[p] = parent[parent[p]];
+            p = parent[p];
+        }
+        return p;
     }
-    else {
-        parent[rootQ] = rootP;
-        rank[rootP] += rank[rootQ];
-    }
-}
 
-inline void UnionFindVector::Delete(int p, int q)
-{
-    int rootP = root(p);
-    int rootQ = root(q);
-    if (rootP == rootQ) return;
-    if (rank[rootP] < rank[rootQ])
+    inline bool UnionFindVector::Connected(int p, int q)
     {
-        parent[rootP] = rootP;
-        rank[rootQ] -= rank[rootP];
+        return Root(p) == Root(q);
     }
-    else
+
+    inline void UnionFindVector::Union(int p, int q)
     {
-        parent[rootQ] = rootQ;
-        rank[rootP] -= rank[rootQ];
+        int rootP = Root(p);
+        int rootQ = Root(q);
+        if (rootP == rootQ) return;
+        if (rank[rootP] < rank[rootQ])
+        {
+            parent[rootP] = rootQ;
+            rank[rootQ] += rank[rootP];
+        }
+        else {
+            parent[rootQ] = rootP;
+            rank[rootP] += rank[rootQ];
+        }
     }
+
+    inline void UnionFindVector::Delete(int p, int q)
+    {
+        int rootP = Root(p);
+        int rootQ = Root(q);
+        if (rootP == rootQ) return;
+        if (rank[rootP] < rank[rootQ])
+        {
+            parent[rootP] = rootP;
+            rank[rootQ] -= rank[rootP];
+        }
+        else
+        {
+            parent[rootQ] = rootQ;
+            rank[rootP] -= rank[rootQ];
+        }
+    }
+
 }

@@ -3,7 +3,7 @@
 
 void UnionFind::test_union_find(int&& times)
 {
-    const int size = 10;
+    const int size = 100000;
 
     std::mt19937 gen(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<int> dist(0, size - 1);

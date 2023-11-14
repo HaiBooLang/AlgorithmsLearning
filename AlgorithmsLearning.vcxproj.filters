@@ -89,5 +89,8 @@
     <ClInclude Include="Stack\TestStack.h">
       <Filter>头文件\Stack</Filter>
     </ClInclude>
+    <ClInclude Include="Common\DataSets.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

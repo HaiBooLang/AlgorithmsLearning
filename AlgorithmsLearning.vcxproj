@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Common\DataSets.h" />
     <ClInclude Include="Stack\Stack.h" />
     <ClInclude Include="Stack\StackContinuous.h" />
     <ClInclude Include="Stack\StackDispersed.h" />

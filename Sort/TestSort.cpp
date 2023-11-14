@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../stub.h"
-#include "../MeasureTime.h"
+#include "../Common/stub.h"
+#include "../Common/MeasureTime.h"
 #include "SelectionSort.h"
 #include "TestSort.h"
 #include <cassert>

@@ -139,9 +139,9 @@
     <ClInclude Include="Stack\StackContinuous.h" />
     <ClInclude Include="Stack\StackDispersed.h" />
     <ClInclude Include="Stack\TestStack.h" />
-    <ClInclude Include="MeasureTime.h" />
+    <ClInclude Include="Common\MeasureTime.h" />
     <ClInclude Include="Sort\TestSort.h" />
-    <ClInclude Include="stub.h" />
+    <ClInclude Include="Common\Stub.h" />
     <ClInclude Include="UnionFind\UnionFInd.h" />
     <ClCompile Include="Search\BinarySearch.h" />
     <ClCompile Include="Search\TestSearch.cpp" />

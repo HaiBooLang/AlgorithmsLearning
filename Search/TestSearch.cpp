@@ -1,6 +1,6 @@
 #include <numeric>
 
-#include "../MeasureTime.h"
+#include "../Common/MeasureTime.h"
 #include "BinarySearch.h"
 #include "TestSearch.h"
 

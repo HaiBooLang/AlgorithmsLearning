@@ -25,6 +25,9 @@
     <Filter Include="头文件\Sort">
       <UniqueIdentifier>{8bb908a7-9141-4294-9983-d6971961898a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Common">
+      <UniqueIdentifier>{27632283-fd05-48ab-a4e3-446a0d4ffd44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UnionFind\TestUnionFind.h">
@@ -53,12 +56,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack\StackContinuous.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack\StackDispersed.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="UnionFind\UnionFindArray.h">
       <Filter>头文件\UnionFind</Filter>
     </ClInclude>
@@ -68,23 +65,29 @@
     <ClInclude Include="UnionFind\UnionFindUnique.h">
       <Filter>头文件\UnionFind</Filter>
     </ClInclude>
-    <ClInclude Include="MeasureTime.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack\Stack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="Stack\TestStack.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="UnionFind\UnionFInd.h">
       <Filter>头文件\UnionFind</Filter>
     </ClInclude>
     <ClInclude Include="Sort\TestSort.h">
       <Filter>头文件\Sort</Filter>
     </ClInclude>
-    <ClInclude Include="stub.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="Common\MeasureTime.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Stub.h">
+      <Filter>头文件\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack\Stack.h">
+      <Filter>头文件\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack\StackContinuous.h">
+      <Filter>头文件\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack\StackDispersed.h">
+      <Filter>头文件\Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack\TestStack.h">
+      <Filter>头文件\Stack</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -39,7 +39,8 @@ void compare_functions(const std::vector<std::pair<std::string, std::function<vo
 		return a.time < b.time;
 		});
 
+	std::cout << std::left << std::setw(20) << "Function" << "Time taken (ns)\n";
 	for (const auto& time : times) {
-		std::cout << "Function: " << time.name << ", Time taken: " << time.time << " ns\n";
+		std::cout << std::left << std::setw(20) << time.name << time.time << "\n";
 	}
 }

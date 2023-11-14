@@ -19,6 +19,12 @@
     <Filter Include="头文件\Search">
       <UniqueIdentifier>{956f3162-2633-4ca0-8c57-68ee970a2ebe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Stack">
+      <UniqueIdentifier>{23c18029-94ce-49e3-8475-df39412e18bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Sort">
+      <UniqueIdentifier>{8bb908a7-9141-4294-9983-d6971961898a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="UnionFind\TestUnionFind.h">
@@ -38,6 +44,12 @@
     </ClCompile>
     <ClCompile Include="Search\TestSearch.h">
       <Filter>头文件\Search</Filter>
+    </ClCompile>
+    <ClCompile Include="Sort\SelectionSort.h">
+      <Filter>头文件\Sort</Filter>
+    </ClCompile>
+    <ClCompile Include="Sort\TestSort.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +79,12 @@
     </ClInclude>
     <ClInclude Include="UnionFind\UnionFInd.h">
       <Filter>头文件\UnionFind</Filter>
+    </ClInclude>
+    <ClInclude Include="Sort\TestSort.h">
+      <Filter>头文件\Sort</Filter>
+    </ClInclude>
+    <ClInclude Include="stub.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,9 @@
-#include "TestUnionFind.h"
 #include "../MeasureTime.h"
+#include "UnionFindUnique.h"
+#include "UnionFindArray.h"
+#include "UnionFindVector.h"
+#include "TestUnionFind.h"
+
 
 void UnionFind::test_union_find(int&& times)
 {

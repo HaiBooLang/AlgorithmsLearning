@@ -3,10 +3,6 @@
 #include <iostream>
 #include <random>
 
-#include "UnionFindUnique.h"
-#include "UnionFindArray.h"
-#include "UnionFindVector.h"
-
 namespace UnionFind
 {
 

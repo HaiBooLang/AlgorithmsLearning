@@ -140,10 +140,14 @@
     <ClInclude Include="Stack\StackDispersed.h" />
     <ClInclude Include="Stack\TestStack.h" />
     <ClInclude Include="MeasureTime.h" />
+    <ClInclude Include="Sort\TestSort.h" />
+    <ClInclude Include="stub.h" />
     <ClInclude Include="UnionFind\UnionFInd.h" />
     <ClCompile Include="Search\BinarySearch.h" />
     <ClCompile Include="Search\TestSearch.cpp" />
     <ClCompile Include="Search\TestSearch.h" />
+    <ClCompile Include="Sort\SelectionSort.h" />
+    <ClCompile Include="Sort\TestSort.cpp" />
     <ClCompile Include="UnionFind\TestUnionFind.cpp" />
     <ClCompile Include="UnionFind\TestUnionFind.h" />
     <ClInclude Include="UnionFind\UnionFindArray.h" />

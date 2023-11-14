@@ -1,7 +1,8 @@
 #include <numeric>
 
-#include "TestSearch.h"
 #include "../MeasureTime.h"
+#include "BinarySearch.h"
+#include "TestSearch.h"
 
 namespace Search
 {

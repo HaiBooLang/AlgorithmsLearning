@@ -2,7 +2,6 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
-#include "BinarySearch.h"
 
 namespace Search
 {

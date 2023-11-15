@@ -8,29 +8,41 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <functional>
 
 namespace Sort
 {
+    void test_sort() {
+
+    }
+
+
 
     void test_selection_sort(int size, int times)
     {
-        std::mt19937 gen(std::random_device{}());
-        std::uniform_int_distribution<> dist(1, size);
+        
+        std::vector<std::pair<std::string, std::function<void(std::vector<int>&)>>> function = {
+            {"selection sort", [](std::vector<int>& data) {selection_sort(data); } },
+        };
 
-        std::vector<int> vec(size);
+        compare_with_all_datasets(function, 1000, 10);
+        //std::mt19937 gen(std::random_device{}());
+        //std::uniform_int_distribution<> dist(1, size);
 
-        for (int i = 0; i < times; ++i)
-        {
-            for (int& value : vec) {
-                value = dist(gen);
-            }
+        //std::vector<int> vec(size);
 
-            std::swap_count = 0;
-            auto time = measure_time(selection_sort<std::vector<int>>, vec);
-            std::cout << "SelectionSort One case time: " << time << " ns\n";
-            assert(std::is_sorted(vec.begin(), vec.end()));
-            std::cout << "SelectionSort Number of swaps: " << std::swap_count << std::endl;
-        }
+        //for (int i = 0; i < times; ++i)
+        //{
+        //    for (int& value : vec) {
+        //        value = dist(gen);
+        //    }
+
+        //    Status::swap_count = 0;
+        //    auto time = measure_time(selection_sort<std::vector<int>>, vec);
+        //    std::cout << "SelectionSort One case time: " << time << " ns\n";
+        //    assert(std::is_sorted(vec.begin(), vec.end()));
+        //    std::cout << "SelectionSort Number of swaps: " << Status::swap_count << std::endl;
+        //}
     }
 
 }

@@ -17,6 +17,24 @@ std::vector<int> generate_sorted_data(int n) {
     return data;
 }
 
+std::vector<int> generate_partially_sorted_data(int n) {
+    std::vector<int> data(n);
+    int i = 0;
+    while (i < n) {
+        int block_size = std::rand() % 10 + 1;
+        if (i + block_size > n) {
+            block_size = n - i;
+        }
+        if ((i / block_size) % 2 == 0) {
+            std::iota(data.begin() + i, data.begin() + i + block_size, 1);
+        } else {
+            std::generate(data.begin() + i, data.begin() + i + block_size, std::rand);
+        }
+        i += block_size;
+    }
+    return data;
+}
+
 std::vector<int> generate_reversed_data(int n) {
     std::vector<int> data(n);
     std::iota(data.rbegin(), data.rend(), 1);

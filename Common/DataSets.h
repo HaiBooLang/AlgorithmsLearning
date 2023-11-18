@@ -21,7 +21,7 @@ inline std::vector<int> generate_partially_sorted_data(int n) {
     std::vector<int> data(n);
     int i = 0;
     while (i < n) {
-        int block_size = std::rand() % 10 + 1;
+        int block_size = std::rand() % 10 + 10;
         if (i + block_size > n) {
             block_size = n - i;
         }

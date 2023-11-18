@@ -136,6 +136,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\DataSets.h" />
+    <ClInclude Include="Sort\InsertionSort.h" />
+    <ClInclude Include="Sort\ShellSort.h" />
     <ClInclude Include="Stack\Stack.h" />
     <ClInclude Include="Stack\StackContinuous.h" />
     <ClInclude Include="Stack\StackDispersed.h" />

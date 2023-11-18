@@ -3,6 +3,8 @@
 #include "../Common/stub.h"
 #include "../Common/MeasureTime.h"
 #include "SelectionSort.h"
+#include "InsertionSort.h"
+#include "ShellSort.h"
 #include "TestSort.h"
 #include <cassert>
 #include <iostream>
@@ -22,10 +24,12 @@ namespace Sort
     {
         
         std::vector<std::pair<std::string, std::function<void(std::vector<int>&)>>> function = {
+            {"shell sort", [](std::vector<int>& data) {shell_sort(data); } },
             {"selection sort", [](std::vector<int>& data) {selection_sort(data); } },
+            {"insertion sort", [](std::vector<int>& data) {insertion_sort(data); } },
         };
 
-        compare_with_all_datasets(function, 1000, 10);
+        compare_with_all_datasets(function, 10000, 1);
         //std::mt19937 gen(std::random_device{}());
         //std::uniform_int_distribution<> dist(1, size);
 

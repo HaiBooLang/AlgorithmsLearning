@@ -92,5 +92,11 @@
     <ClInclude Include="Common\DataSets.h">
       <Filter>头文件\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Sort\InsertionSort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Sort\ShellSort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

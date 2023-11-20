@@ -17,10 +17,23 @@
 namespace Sort
 {
 	void test_sort() {
+        test_merge_sort();
 
 	}
 
+    void test_merge_sort() {
 
+        auto data1 = generate_irregular_sorted_data(1000);
+        auto data2 = generate_irregular_sorted_data(1000);
+
+        auto result1 = merge_sort(data1, data2);
+        assert(std::is_sorted(result1.begin(), result1.end()));
+
+        auto data3 = generate_random_data(1000);
+        top_down_merge_sort<int>(data3.begin(), data3.end());
+        assert(std::is_sorted(data3.begin(), data3.end()));
+
+    }
 
 	void test_selection_sort(int size, int times)
 	{
@@ -122,8 +135,6 @@ namespace Sort
 			{"insertion sort", [](std::vector<int>& data) {insertion_sort(data); } },
 		};
 
-
-        std::cout << measure_time([&]() { inplace_merge_sort(generate_irregular_sorted_data(1000), generate_irregular_sorted_data(1000)); });
 
 		compare_with_all_datasets(function, 10000, 1);
 

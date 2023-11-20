@@ -50,9 +50,9 @@ inline void compare_functions(const std::vector<std::pair<std::string, std::func
 		return a.time < b.time;
 		});
 
-	std::cout << std::left << std::setw(20) << "Function" << "Time taken (ns)\n";
+	std::cout << std::left << std::setw(40) << "Function" << "Time taken (ns)\n";
 	for (const auto& record : records) {
-		std::cout << std::left << std::setw(20) << record.name 
+		std::cout << std::left << std::setw(40) << record.name
 			<< std::setw(20) << record.time 
 			<< std::setw(20) << 100.0 * record.time / records[0].time << "\n";
 	}

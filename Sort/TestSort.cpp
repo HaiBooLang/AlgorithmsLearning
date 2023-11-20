@@ -5,48 +5,128 @@
 #include "SelectionSort.h"
 #include "InsertionSort.h"
 #include "ShellSort.h"
+#include "MergeSort.h"
 #include "TestSort.h"
 #include <cassert>
 #include <iostream>
 #include <vector>
 #include <random>
+#include <cassert>
 #include <functional>
 
 namespace Sort
 {
-    void test_sort() {
+	void test_sort() {
 
-    }
+	}
 
 
 
-    void test_selection_sort(int size, int times)
-    {
-        
-        std::vector<std::pair<std::string, std::function<void(std::vector<int>&)>>> function = {
-            {"shell sort", [](std::vector<int>& data) {shell_sort(data); } },
-            {"selection sort", [](std::vector<int>& data) {selection_sort(data); } },
-            {"insertion sort", [](std::vector<int>& data) {insertion_sort(data); } },
+	void test_selection_sort(int size, int times)
+	{
+        // Shell's original sequence
+        auto shell_sequence = [](int size) {
+            std::vector<int> gaps;
+            for (int gap = 1; gap < size; gap = gap * 2 + 1)
+                gaps.push_back(gap);
+            std::reverse(gaps.begin(), gaps.end());
+            //for (const auto& gap : gaps)
+            //{
+            //    std::cout << gap << " ";
+            //}
+            return gaps;
         };
 
-        compare_with_all_datasets(function, 10000, 1);
-        //std::mt19937 gen(std::random_device{}());
-        //std::uniform_int_distribution<> dist(1, size);
+        // Knuth's sequence
+        auto knuth_sequence = [](int size) {
+            std::vector<int> gaps;
+            for (int gap = 1; gap < size / 3; gap = gap * 3 + 1)
+                gaps.push_back(gap);
+            std::reverse(gaps.begin(), gaps.end());
+            return gaps;
+        };
 
-        //std::vector<int> vec(size);
+        // Sedgewick's sequence
+        auto sedgewick_sequence = [](int size) {
+            std::vector<int> gaps;
+            int k = 0;
+            while (true) {
+                int gap;
+                if (k == 0) {
+                    gap = 1;
+                }
+                else {
+                    gap = std::pow(4, k) + 3 * std::pow(2, k - 1) + 1;
+                }
+                if (gap > size) break;
+                gaps.push_back(gap);
+                ++k;
+            }
+            std::reverse(gaps.begin(), gaps.end());
+            return gaps;
+        };
 
-        //for (int i = 0; i < times; ++i)
-        //{
-        //    for (int& value : vec) {
-        //        value = dist(gen);
-        //    }
+        // Hibbard's sequence
+        auto hibbard_sequence = [](int size) {
+            std::vector<int> gaps;
+            int k = 1;
+            while (true) {
+                int gap = std::pow(2, k) - 1;
+                if (gap > size) break;
+                gaps.push_back(gap);
+                ++k;
+            }
+            std::reverse(gaps.begin(), gaps.end());
+            return gaps;
+        };
 
-        //    Status::swap_count = 0;
-        //    auto time = measure_time(selection_sort<std::vector<int>>, vec);
-        //    std::cout << "SelectionSort One case time: " << time << " ns\n";
-        //    assert(std::is_sorted(vec.begin(), vec.end()));
-        //    std::cout << "SelectionSort Number of swaps: " << Status::swap_count << std::endl;
-        //}
-    }
+        // Papernov & Stasevich sequence
+        auto papernov_stasevich_sequence = [](int size) {
+            std::vector<int> gaps;
+            for (int k = 1; ; ++k) {
+                int gap = (1 << k) + 1;
+                if (gap > size) break;
+                gaps.push_back(gap);
+            }
+            if (gaps.empty() || gaps.back() != 1) {
+                gaps.push_back(1);
+            }
+            std::reverse(gaps.begin(), gaps.end());
+            return gaps;
+        };
+
+        // Pratt's sequence
+        auto pratt_sequence = [](int size) {
+            std::vector<int> gaps;
+            for (int p = 0; ; ++p) {
+                for (int q = 0; ; ++q) {
+                    int gap = std::pow(2, p) * std::pow(3, q);
+                    if (gap > size) break;
+                    gaps.push_back(gap);
+                }
+                if (std::pow(2, p) > size) break;
+            }
+            std::reverse(gaps.begin(), gaps.end());
+            return gaps;
+        };
+
+
+		std::vector<std::pair<std::string, std::function<void(std::vector<int>&)>>> function = {
+            {"shell sort 2x + 1", [&shell_sequence](std::vector<int>& data) {shell_sort(data, shell_sequence); }},
+            {"shell sort 3x + 1", [&knuth_sequence](std::vector<int>& data) {shell_sort(data, knuth_sequence); }},
+            {"shell sort 4^k + 3*2^(k-1) + 1", [&sedgewick_sequence](std::vector<int>& data) {shell_sort(data, sedgewick_sequence); }},
+            {"shell sort 2^k - 1", [&hibbard_sequence](std::vector<int>& data) {shell_sort(data, hibbard_sequence); }},
+            {"shell sort 2^k + 1", [&papernov_stasevich_sequence](std::vector<int>& data) {shell_sort(data, papernov_stasevich_sequence); }},
+			{"shell sort 2^p * 3^q", [&pratt_sequence](std::vector<int>& data) {shell_sort(data, pratt_sequence); }},
+			{"selection sort", [](std::vector<int>& data) {selection_sort(data); } },
+			{"insertion sort", [](std::vector<int>& data) {insertion_sort(data); } },
+		};
+
+
+        std::cout << measure_time([&]() { inplace_merge_sort(generate_irregular_sorted_data(1000), generate_irregular_sorted_data(1000)); });
+
+		compare_with_all_datasets(function, 10000, 1);
+
+	}
 
 }

@@ -7,7 +7,8 @@ namespace Sort {
     // 定义一个名为 shell_sort 的模板函数
     // 它接受一个随机访问范围（例如，数组或向量）和一个生成间隔序列的函数
     template<std::ranges::random_access_range Container, typename GapCalculator>
-    constexpr void shell_sort(Container& c, GapCalculator&& gap_calculator) {
+    constexpr void shell_sort(Container& c, GapCalculator&& gap_calculator)
+    {
         // 获取容器的大小
         auto size = std::size(c);
         // 使用 gap_calculator 函数生成间隔序列
@@ -20,7 +21,9 @@ namespace Sort {
             {
                 // 将 c[i] 插入到 c[i-gap], c[i-2*gap], c[i-3*gap]... 中
                 for (auto j = i; j - c.begin() >= gap && *j < *(j - gap); j -= gap)
+                {
                     std::swap(*j, *(j - gap));
+                }
             }
         }
     }

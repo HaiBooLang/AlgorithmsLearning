@@ -7,7 +7,8 @@ namespace Sort
 
     // 归并函数
     template <typename T>
-    std::vector<T> merge_sort(const std::vector<T>& c1, const std::vector<T>& c2) {
+    std::vector<T> merge_sort(const std::vector<T>& c1, const std::vector<T>& c2) 
+    {
         std::vector<T> result;
         // 预分配内存
         result.reserve(c1.size() + c2.size());
@@ -16,14 +17,17 @@ namespace Sort
         auto iter2 = c2.begin();
 
         // 当两个容器都有元素时
-        while (iter1 != c1.end() && iter2 != c2.end()) {
+        while (iter1 != c1.end() && iter2 != c2.end()) 
+        {
             // 如果容器1的当前元素小于或等于容器2的当前元素
-            if (*iter1 <= *iter2) {
+            if (*iter1 <= *iter2) 
+            {
                 // 将容器1的当前元素添加到结果中
                 result.push_back(*iter1);
                 ++iter1;
             }
-            else {
+            else 
+            {
                 // 否则，将容器2的当前元素添加到结果中
                 result.push_back(*iter2);
                 ++iter2;
@@ -41,7 +45,8 @@ namespace Sort
 
     // std::vector<typename std::iterator_traits<Iterator>::value_type>
     template <typename T>
-    std::vector<T> merge_sort(typename std::vector<T>::iterator begin1, typename std::vector<T>::iterator end1, typename std::vector<T>::iterator begin2, typename std::vector<T>::iterator end2) {
+    std::vector<T> merge_sort(typename std::vector<T>::iterator begin1, typename std::vector<T>::iterator end1, typename std::vector<T>::iterator begin2, typename std::vector<T>::iterator end2) 
+    {
         std::vector<T> result;
         result.reserve(std::distance(begin1, end1) + std::distance(begin2, end2));
 
@@ -70,7 +75,8 @@ namespace Sort
     }
 
     template <typename T>
-    void inplace_merge_sort(typename std::vector<T>::iterator begin, typename std::vector<T>::iterator middle, typename std::vector<T>::iterator end) {
+    void inplace_merge_sort(typename std::vector<T>::iterator begin, typename std::vector<T>::iterator middle, typename std::vector<T>::iterator end) 
+    {
         std::vector<T> temp;
         temp.reserve(std::distance(begin, end));
         std::copy(begin, end, std::back_inserter(temp));

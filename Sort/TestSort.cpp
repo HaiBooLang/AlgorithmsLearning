@@ -16,12 +16,13 @@
 
 namespace Sort
 {
-	void test_sort() {
+	void test_sort() 
+    {
         test_merge_sort();
-
 	}
 
-    void test_merge_sort() {
+    void test_merge_sort() 
+    {
 
         auto data1 = generate_irregular_sorted_data(1000);
         auto data2 = generate_irregular_sorted_data(1000);
@@ -38,7 +39,8 @@ namespace Sort
 	void test_selection_sort(int size, int times)
 	{
         // Shell's original sequence
-        auto shell_sequence = [](int size) {
+        auto shell_sequence = [](int size) 
+        {
             std::vector<int> gaps;
             for (int gap = 1; gap < size; gap = gap * 2 + 1)
                 gaps.push_back(gap);
@@ -51,7 +53,8 @@ namespace Sort
         };
 
         // Knuth's sequence
-        auto knuth_sequence = [](int size) {
+        auto knuth_sequence = [](int size) 
+        {
             std::vector<int> gaps;
             for (int gap = 1; gap < size / 3; gap = gap * 3 + 1)
                 gaps.push_back(gap);
@@ -60,7 +63,8 @@ namespace Sort
         };
 
         // Sedgewick's sequence
-        auto sedgewick_sequence = [](int size) {
+        auto sedgewick_sequence = [](int size) 
+        {
             std::vector<int> gaps;
             int k = 0;
             while (true) {
@@ -80,7 +84,8 @@ namespace Sort
         };
 
         // Hibbard's sequence
-        auto hibbard_sequence = [](int size) {
+        auto hibbard_sequence = [](int size)
+        {
             std::vector<int> gaps;
             int k = 1;
             while (true) {
@@ -94,14 +99,17 @@ namespace Sort
         };
 
         // Papernov & Stasevich sequence
-        auto papernov_stasevich_sequence = [](int size) {
+        auto papernov_stasevich_sequence = [](int size)
+        {
             std::vector<int> gaps;
-            for (int k = 1; ; ++k) {
+            for (int k = 1; ; ++k)
+            {
                 int gap = (1 << k) + 1;
                 if (gap > size) break;
                 gaps.push_back(gap);
             }
-            if (gaps.empty() || gaps.back() != 1) {
+            if (gaps.empty() || gaps.back() != 1)
+            {
                 gaps.push_back(1);
             }
             std::reverse(gaps.begin(), gaps.end());
@@ -109,9 +117,11 @@ namespace Sort
         };
 
         // Pratt's sequence
-        auto pratt_sequence = [](int size) {
+        auto pratt_sequence = [](int size)
+        {
             std::vector<int> gaps;
-            for (int p = 0; ; ++p) {
+            for (int p = 0; ; ++p)
+            {
                 for (int q = 0; ; ++q) {
                     int gap = std::pow(2, p) * std::pow(3, q);
                     if (gap > size) break;
@@ -124,7 +134,8 @@ namespace Sort
         };
 
 
-		std::vector<std::pair<std::string, std::function<void(std::vector<int>&)>>> function = {
+		std::vector<std::pair<std::string, std::function<void(std::vector<int>&)>>> function =
+        {
             {"shell sort 2x + 1", [&shell_sequence](std::vector<int>& data) {shell_sort(data, shell_sequence); }},
             {"shell sort 3x + 1", [&knuth_sequence](std::vector<int>& data) {shell_sort(data, knuth_sequence); }},
             {"shell sort 4^k + 3*2^(k-1) + 1", [&sedgewick_sequence](std::vector<int>& data) {shell_sort(data, sedgewick_sequence); }},

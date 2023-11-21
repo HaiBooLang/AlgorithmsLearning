@@ -1,3 +1,9 @@
+/*
+ * 文件名: MainTest.h
+ * 作者: HaiBooLang
+ * 创建日期: 2023-11-18
+ * 这个文件是程序的入口点，它调用了一些测试函数来测试不同的算法，包括并查集、搜索和排序等。
+ */
 #pragma once
 
 #include "UnionFind/TestUnionFind.h"

@@ -1,3 +1,9 @@
+/*
+ * 文件名: MeasureTime.h
+ * 作者: HaiBooLang
+ * 创建日期: 2023-11-18
+ * 描述: 这个文件包含了一些用于测量和比较函数执行时间的模板函数。
+ */
 #pragma once
 
 #include <typeinfo>
@@ -13,6 +19,7 @@
 
 #include "DataSets.h"
 
+// measure_time 函数接受一个函数和一些参数，执行该函数，并返回执行时间（以纳秒为单位）。
 template<typename Func, typename... Args>
 inline auto measure_time(Func&& func, Args&&... args) {
 	auto start = std::chrono::high_resolution_clock::now();
@@ -26,6 +33,7 @@ inline auto measure_time(Func&& func, Args&&... args) {
 	return duration.count();
 }  
 
+// compare_functions 函数接受一个函数列表和一些数据，对每个函数使用相同的数据执行指定次数，然后比较它们的平均执行时间。
 template<typename DataType>
 inline void compare_functions(const std::vector<std::pair<std::string, std::function<void(DataType&)>>>& functions, DataType data, const int times = 1) {
 	struct TimePair {
@@ -58,7 +66,7 @@ inline void compare_functions(const std::vector<std::pair<std::string, std::func
 	}
 }
 
-
+// get_type_name 函数返回给定类型的名称。
 template<typename T>
 inline std::string get_type_name() {
 	static const std::map<std::string, std::string> type_names = {
@@ -76,7 +84,7 @@ inline std::string get_type_name() {
 	}
 }
 
-
+// get_current_time 函数返回当前时间。
 inline std::tm get_current_time() {
 	auto current_time_point = std::chrono::system_clock::now();
 	std::time_t current_time_time_t = std::chrono::system_clock::to_time_t(current_time_point);
@@ -85,6 +93,7 @@ inline std::tm get_current_time() {
 	return current_time_struct;
 }
 
+// compare_with_all_datasets 函数接受一个函数列表，对每个函数使用各种不同的数据集执行指定次数，然后比较它们的平均执行时间。
 template<typename DataType>
 inline void compare_with_all_datasets(const std::vector<std::pair<std::string, std::function<void(DataType&)>>>& functions, const int size = 100, const int times = 2) {
 	std::vector<std::pair<std::string, std::function<std::vector<int>(int)>>> datasets = {

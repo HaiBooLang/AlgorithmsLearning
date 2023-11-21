@@ -31,7 +31,7 @@ namespace Sort
         assert(std::is_sorted(result1.begin(), result1.end()));
 
         auto data3 = generate_random_data(1000);
-        top_down_merge_sort<int>(data3.begin(), data3.end());
+        down_top_merge_sort<int>(data3.begin(), data3.end());
         assert(std::is_sorted(data3.begin(), data3.end()));
 
     }

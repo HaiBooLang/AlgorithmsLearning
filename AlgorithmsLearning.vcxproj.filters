@@ -101,5 +101,8 @@
     <ClInclude Include="Sort\MergeSort.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Sort\QuickSort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

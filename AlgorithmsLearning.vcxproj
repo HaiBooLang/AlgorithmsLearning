@@ -138,6 +138,7 @@
     <ClInclude Include="Common\DataSets.h" />
     <ClInclude Include="Sort\InsertionSort.h" />
     <ClInclude Include="Sort\MergeSort.h" />
+    <ClInclude Include="Sort\QuickSort.h" />
     <ClInclude Include="Sort\ShellSort.h" />
     <ClInclude Include="Stack\Stack.h" />
     <ClInclude Include="Stack\StackContinuous.h" />

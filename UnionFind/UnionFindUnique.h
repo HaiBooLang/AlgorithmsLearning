@@ -8,54 +8,54 @@
 namespace UnionFind
 {
 
-    // »ùÓÚ²¢²é¼¯µÄÊı¾İ½á¹¹
+    // åŸºäºå¹¶æŸ¥é›†çš„æ•°æ®ç»“æ„
     class UnionFindUnique : public UnionFind
     {
     private:
-        std::size_t size = 0;                           // ÔªËØµÄÊıÁ¿
-        std::unique_ptr<int[]> parent;                  // ´æ´¢Ã¿¸öÔªËØµÄ¸¸½Úµã
-        std::unique_ptr<int[]> rank;                    // ´æ´¢Ã¿¸ö¼¯ºÏµÄ´óĞ¡£¨¼´¸ù½ÚµãµÄ×Ó½ÚµãÊı£©
+        std::size_t size = 0;                           // å…ƒç´ çš„æ•°é‡
+        std::unique_ptr<int[]> parent;                  // å­˜å‚¨æ¯ä¸ªå…ƒç´ çš„çˆ¶èŠ‚ç‚¹
+        std::unique_ptr<int[]> rank;                    // å­˜å‚¨æ¯ä¸ªé›†åˆçš„å¤§å°ï¼ˆå³æ ¹èŠ‚ç‚¹çš„å­èŠ‚ç‚¹æ•°ï¼‰
     public:
         explicit UnionFindUnique(std::size_t N);
-        void Union(int p, int q);                       // ½«ÔªËØ p ËùÔÚµÄ¼¯ºÏºÍÔªËØ q ËùÔÚµÄ¼¯ºÏºÏ²¢
-        void Delete(int p, int q);                      // ½«ÔªËØ p ËùÔÚµÄ¼¯ºÏºÍÔªËØ q ËùÔÚµÄ¼¯ºÏ·ÖÀë
-        bool Connected(int p, int q);                   // ÅĞ¶ÏÔªËØ p ºÍÔªËØ q ÊÇ·ñÔÚÍ¬Ò»¸ö¼¯ºÏÖĞ
-        int Root(int p);                                // ²éÕÒÔªËØ p ËùÔÚµÄ¼¯ºÏµÄ¸ù½Úµã
+        void Union(int p, int q);                       // å°†å…ƒç´  p æ‰€åœ¨çš„é›†åˆå’Œå…ƒç´  q æ‰€åœ¨çš„é›†åˆåˆå¹¶
+        void Delete(int p, int q);                      // å°†å…ƒç´  p æ‰€åœ¨çš„é›†åˆå’Œå…ƒç´  q æ‰€åœ¨çš„é›†åˆåˆ†ç¦»
+        bool Connected(int p, int q);                   // åˆ¤æ–­å…ƒç´  p å’Œå…ƒç´  q æ˜¯å¦åœ¨åŒä¸€ä¸ªé›†åˆä¸­
+        int Root(int p);                                // æŸ¥æ‰¾å…ƒç´  p æ‰€åœ¨çš„é›†åˆçš„æ ¹èŠ‚ç‚¹
     };
 
     inline UnionFindUnique::UnionFindUnique(std::size_t N)
-        : size{ N }, parent(std::make_unique<int[]>(N)), rank(std::make_unique<int[]>(N))   // ³õÊ¼»¯ÁĞ±í³õÊ¼»¯ size¡¢parent ºÍ rank ³ÉÔ±±äÁ¿
-        // parent ºÍ rank ¶¼ÊÇÊ¹ÓÃ std::unique_ptr ÀàĞÍµÄÖÇÄÜÖ¸Õë¹ÜÀíµÄ¶¯Ì¬Êı×é
+        : size{ N }, parent(std::make_unique<int[]>(N)), rank(std::make_unique<int[]>(N))   // åˆå§‹åŒ–åˆ—è¡¨åˆå§‹åŒ– sizeã€parent å’Œ rank æˆå‘˜å˜é‡
+        // parent å’Œ rank éƒ½æ˜¯ä½¿ç”¨ std::unique_ptr ç±»å‹çš„æ™ºèƒ½æŒ‡é’ˆç®¡ç†çš„åŠ¨æ€æ•°ç»„
     {
-        std::fill_n(rank.get(), N, 1);                                          // ½« rank Êı×éÖĞµÄËùÓĞÔªËØ³õÊ¼»¯Îª 1
-        std::generate_n(parent.get(), N, [n = 0]() mutable { return n++; });    // ½« parent Êı×éÖĞµÄÔªËØ³õÊ¼»¯Îª 0 µ½ N-1 µÄÁ¬ĞøÕûÊı
+        std::fill_n(rank.get(), N, 1);                                          // å°† rank æ•°ç»„ä¸­çš„æ‰€æœ‰å…ƒç´ åˆå§‹åŒ–ä¸º 1
+        std::generate_n(parent.get(), N, [n = 0]() mutable { return n++; });    // å°† parent æ•°ç»„ä¸­çš„å…ƒç´ åˆå§‹åŒ–ä¸º 0 åˆ° N-1 çš„è¿ç»­æ•´æ•°
     }
 
     inline int UnionFindUnique::Root(int p) // 
     {
         while (p != parent[p])
         {
-            parent[p] = parent[parent[p]];  // Â·¾¶Ñ¹Ëõ£¬½«ÔªËØ p µ½¸ù½ÚµãÂ·¾¶ÉÏµÄËùÓĞ½ÚµãµÄ¸¸½Úµã¶¼Ö±½ÓÖ¸Ïò¸ù½Úµã£¬´Ó¶ø¼ÓËÙºóĞø²éÕÒ²Ù×÷
-            p = parent[p];                  // ²éÕÒÔªËØ p µÄ¸ù½Úµã
+            parent[p] = parent[parent[p]];  // è·¯å¾„å‹ç¼©ï¼Œå°†å…ƒç´  p åˆ°æ ¹èŠ‚ç‚¹è·¯å¾„ä¸Šçš„æ‰€æœ‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹éƒ½ç›´æ¥æŒ‡å‘æ ¹èŠ‚ç‚¹ï¼Œä»è€ŒåŠ é€Ÿåç»­æŸ¥æ‰¾æ“ä½œ
+            p = parent[p];                  // æŸ¥æ‰¾å…ƒç´  p çš„æ ¹èŠ‚ç‚¹
         }
         return p;
     }
 
     inline bool UnionFindUnique::Connected(int p, int q)
     {
-        return Root(p) == Root(q);          // ÅĞ¶ÏÔªËØ p ºÍÔªËØ q ËùÔÚµÄ¼¯ºÏµÄ¸ù½ÚµãÊÇ·ñÏàÍ¬
+        return Root(p) == Root(q);          // åˆ¤æ–­å…ƒç´  p å’Œå…ƒç´  q æ‰€åœ¨çš„é›†åˆçš„æ ¹èŠ‚ç‚¹æ˜¯å¦ç›¸åŒ
     }
 
     inline void UnionFindUnique::Union(int p, int q)
     {
-        int rootP = Root(p);                // ²éÕÒÔªËØ p ºÍÔªËØ q ËùÔÚµÄ¼¯ºÏµÄ¸ù½Úµã
+        int rootP = Root(p);                // æŸ¥æ‰¾å…ƒç´  p å’Œå…ƒç´  q æ‰€åœ¨çš„é›†åˆçš„æ ¹èŠ‚ç‚¹
         int rootQ = Root(q);
-        if (rootP == rootQ) return;         // Èç¹ûËüÃÇÒÑ¾­ÔÚÍ¬Ò»¸ö¼¯ºÏÖĞ£¬Ôò²»ĞèÒª½øĞĞÈÎºÎ²Ù×÷
-        if (rank[rootP] < rank[rootQ])      // ·ñÔò£¬½«Á½¸ö¼¯ºÏºÏ²¢£¬½«ÔªËØÊıÁ¿½ÏÉÙµÄ¼¯ºÏºÏ²¢µ½ÔªËØÊıÁ¿½Ï¶àµÄ¼¯ºÏÖĞ£¬²¢¸üĞÂ¸ù½ÚµãµÄ×Ó½ÚµãÊı
+        if (rootP == rootQ) return;         // å¦‚æœå®ƒä»¬å·²ç»åœ¨åŒä¸€ä¸ªé›†åˆä¸­ï¼Œåˆ™ä¸éœ€è¦è¿›è¡Œä»»ä½•æ“ä½œ
+        if (rank[rootP] < rank[rootQ])      // å¦åˆ™ï¼Œå°†ä¸¤ä¸ªé›†åˆåˆå¹¶ï¼Œå°†å…ƒç´ æ•°é‡è¾ƒå°‘çš„é›†åˆåˆå¹¶åˆ°å…ƒç´ æ•°é‡è¾ƒå¤šçš„é›†åˆä¸­ï¼Œå¹¶æ›´æ–°æ ¹èŠ‚ç‚¹çš„å­èŠ‚ç‚¹æ•°
         {
-            // Èç¹û¼¯ºÏ rootP µÄ´óĞ¡Ğ¡ÓÚ¼¯ºÏ rootQ µÄ´óĞ¡
-            parent[rootP] = rootQ;          // Ôò½«¼¯ºÏ rootP µÄ¸ù½ÚµãÖ¸Ïò¼¯ºÏ rootQ µÄ¸ù½Úµã
-            rank[rootQ] += rank[rootP];     // ²¢½«¼¯ºÏ rootQ µÄ´óĞ¡Ôö¼Ó rootP µÄ´óĞ¡
+            // å¦‚æœé›†åˆ rootP çš„å¤§å°å°äºé›†åˆ rootQ çš„å¤§å°
+            parent[rootP] = rootQ;          // åˆ™å°†é›†åˆ rootP çš„æ ¹èŠ‚ç‚¹æŒ‡å‘é›†åˆ rootQ çš„æ ¹èŠ‚ç‚¹
+            rank[rootQ] += rank[rootP];     // å¹¶å°†é›†åˆ rootQ çš„å¤§å°å¢åŠ  rootP çš„å¤§å°
         }
         else {
             parent[rootQ] = rootP;

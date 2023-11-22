@@ -5,7 +5,7 @@
 #include "TestUnionFind.h"
 
 
-void UnionFind::test_union_find(int&& times)
+void UnionFind::test_union_find(int times)
 {
     const int size = 100000;
 

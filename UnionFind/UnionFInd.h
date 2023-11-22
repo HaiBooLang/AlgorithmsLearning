@@ -5,10 +5,10 @@ namespace UnionFind
 
     class UnionFind {
     public:
-        virtual void Union(int p, int q) = 0;                       // ½«ÔªËØ p ËùÔÚµÄ¼¯ºÏºÍÔªËØ q ËùÔÚµÄ¼¯ºÏºÏ²¢
-        virtual void Delete(int p, int q) = 0;                      // ½«ÔªËØ p ËùÔÚµÄ¼¯ºÏºÍÔªËØ q ËùÔÚµÄ¼¯ºÏ·ÖÀë
-        virtual bool Connected(int p, int q) = 0;                   // ÅĞ¶ÏÔªËØ p ºÍÔªËØ q ÊÇ·ñÔÚÍ¬Ò»¸ö¼¯ºÏÖĞ
-        virtual int Root(int p) = 0;                                // ²éÕÒÔªËØ p ËùÔÚµÄ¼¯ºÏµÄ¸ù½Úµã
+        virtual void Union(int p, int q) = 0;                       // å°†å…ƒç´  p æ‰€åœ¨çš„é›†åˆå’Œå…ƒç´  q æ‰€åœ¨çš„é›†åˆåˆå¹¶
+        virtual void Delete(int p, int q) = 0;                      // å°†å…ƒç´  p æ‰€åœ¨çš„é›†åˆå’Œå…ƒç´  q æ‰€åœ¨çš„é›†åˆåˆ†ç¦»
+        virtual bool Connected(int p, int q) = 0;                   // åˆ¤æ–­å…ƒç´  p å’Œå…ƒç´  q æ˜¯å¦åœ¨åŒä¸€ä¸ªé›†åˆä¸­
+        virtual int Root(int p) = 0;                                // æŸ¥æ‰¾å…ƒç´  p æ‰€åœ¨çš„é›†åˆçš„æ ¹èŠ‚ç‚¹
     };
 
 }

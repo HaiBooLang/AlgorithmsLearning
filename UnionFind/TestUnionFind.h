@@ -6,6 +6,6 @@
 namespace UnionFind
 {
 
-    void test_union_find(int&& times = 10);
+    void test_union_find(int times = 10);
 
 }

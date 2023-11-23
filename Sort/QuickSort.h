@@ -54,22 +54,30 @@ namespace Sort
 	template <typename Container>
 	inline void quick_sort(Container& container)
 	{
-		auto start_iter = c.begin();
-		auto end_iter = c.end();
+		auto left_iter = c.begin();
+		auto right_iter = c.end();
 
 		// 如果待排序的序列的大小小于15，那么使用插入排序而不是快速排序
-		if (std::distance(start_iter, end_iter) < 15) {
-			insertion_sort(start_iter, end_iter);
+		if (std::distance(left_iter, right_iter) < 15)
+        {
+			insertion_sort(left_iter, right_iter);
 			return;
 		}
 
 		// 对序列进行分区，返回枢轴的位置
-		auto pivot_iter = partition(start_iter, end_iter);
+		auto pivot_iter = partition(left_iter, right_iter);
 
 		// 对枢轴左边的序列进行递归排序
-		if (pivot_iter != start_iter) quick_sort(start_iter, pivot_iter);j.[k😍x]
+        if (pivot_iter != left_iter)
+        {
+            quick_sort(left_iter, pivot_iter);
+        }
 		// 对枢轴右边的序列进行递归排序
-		if (pivot_iter + 1 != end_iter) quick_sort(pivot_iter + 1, end_iter);
+		if (pivot_iter + 1 != right_iter)
+        {
+            quick_sort(pivot_iter + 1, right_iter);
+        }
+
 	}
 
 }

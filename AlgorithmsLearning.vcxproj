@@ -136,6 +136,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common\DataSets.h" />
+    <ClInclude Include="Search\BinarySearchSymbolTree.h" />
+    <ClInclude Include="Search\SequentialSearchSymbolTable.h" />
+    <ClInclude Include="Search\SymbolTable.h" />
     <ClInclude Include="Sort\InsertionSort.h" />
     <ClInclude Include="Sort\MergeSort.h" />
     <ClInclude Include="Sort\PriorityQueue.h" />

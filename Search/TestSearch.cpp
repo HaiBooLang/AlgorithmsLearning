@@ -2,17 +2,20 @@
 
 #include "../Common/MeasureTime.h"
 #include "BinarySearch.h"
+#include "SequentialSearchSymbolTable.h"
 #include "TestSearch.h"
 
 namespace Search
 {
 
-    void test_seach(int size)
+    void test_search(int size)
     {
         test_binary_search(size);
     }
 
     void test_binary_search(int size) {
+
+
         std::mt19937 gen(std::random_device{}());
         std::uniform_int_distribution<> dist(1, size);
 

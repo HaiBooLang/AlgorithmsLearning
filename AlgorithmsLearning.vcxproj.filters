@@ -107,5 +107,14 @@
     <ClInclude Include="Sort\PriorityQueue.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Search\SymbolTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Search\BinarySearchSymbolTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Search\SequentialSearchSymbolTable.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

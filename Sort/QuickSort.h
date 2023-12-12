@@ -10,6 +10,20 @@
 
 namespace Sort
 {
+    template <typename T>
+    concept Copyable = std::is_copy_constructible_v<T>;
+
+    template <typename T>
+    concept RandomAccessContainer = requires(T a) {
+        requires Copyable<typename T::value_type>;
+        {
+            a.begin()
+        } -> std::same_as<typename T::iterator>;
+        {
+            a.end()
+        } -> std::same_as<typename T::iterator>;
+        requires std::random_access_iterator<typename T::iterator>;
+    };
 
     // 快速排序
     // 快速排序是一种采用分治策略的排序算法。它的基本思想是选择一个枢轴元素，然后将数组重新排列，使得所有小于枢轴的元素都在枢轴之前，所有大于枢轴的元素都在枢轴之后。
@@ -17,8 +31,8 @@ namespace Sort
     // 快速排序的平均时间复杂度为 O(n log n)，但在最坏情况下（输入数组已经排序），时间复杂度为 O(n^2)。空间复杂度为 O(log n)，这是因为需要栈空间来处理递归调用。
     // 快速排序不是稳定的排序算法，但在处理大规模和随机数据时，它的平均性能非常好。
 
-    template<typename InputIt>
-    inline InputIt partition(InputIt begin, InputIt end)
+    template <std::random_access_iterator InputIt>
+    InputIt partition(InputIt begin, InputIt end)
     {
         // 选择第一个元素、中间元素和最后一个元素
         auto first = begin;
@@ -33,13 +47,17 @@ namespace Sort
         auto left_iter = begin + 1;
         auto right_iter = end - 1;
 
-        while (true) {
+        while (true)
+        {
             // 从左向右找到第一个大于枢轴的元素
-            while (left_iter <= right_iter && *left_iter <= pivot_value) ++left_iter;
+            while (left_iter <= right_iter && *left_iter <= pivot_value)
+                ++left_iter;
             // 从右向左找到第一个小于或等于枢轴的元素
-            while (left_iter <= right_iter && *right_iter > pivot_value) --right_iter;
+            while (left_iter <= right_iter && *right_iter > pivot_value)
+                --right_iter;
             // 如果左右指针相遇，跳出循环
-            if (left_iter >= right_iter) break;
+            if (left_iter >= right_iter)
+                break;
             // 交换左右指针指向的元素
             std::iter_swap(left_iter, right_iter);
         }
@@ -50,34 +68,57 @@ namespace Sort
         return right_iter;
     }
 
-
-	template <typename Container>
-	inline void quick_sort(Container& container)
-	{
-		auto left_iter = c.begin();
-		auto right_iter = c.end();
-
-		// 如果待排序的序列的大小小于15，那么使用插入排序而不是快速排序
-		if (std::distance(left_iter, right_iter) < 15)
+    template <std::random_access_iterator InputIt>
+    void quick_sort(InputIt begin, InputIt end)
+    {
+        // 如果待排序的序列的大小小于15，那么使用插入排序而不是快速排序
+        if (std::distance(begin, end) < 15)
         {
-			insertion_sort(left_iter, right_iter);
-			return;
-		}
+            insertion_sort(begin, end);
+            return;
+        }
 
-		// 对序列进行分区，返回枢轴的位置
-		auto pivot_iter = partition(left_iter, right_iter);
+        // 对序列进行分区，返回枢轴的位置
+        auto pivot_iter = partition(begin, end);
 
-		// 对枢轴左边的序列进行递归排序
+        // 对枢轴左边的序列进行递归排序
+        if (pivot_iter != begin)
+        {
+            quick_sort(begin, pivot_iter);
+        }
+        // 对枢轴右边的序列进行递归排序
+        if (pivot_iter + 1 != end)
+        {
+            quick_sort(pivot_iter + 1, end);
+        }
+    }
+
+    template <std::ranges::random_access_range Container>
+    void quick_sort(Container &container)
+    {
+        auto left_iter = container.begin();
+        auto right_iter = container.end();
+
+        // 如果待排序的序列的大小小于15，那么使用插入排序而不是快速排序
+        if (std::distance(left_iter, right_iter) < 15)
+        {
+            insertion_sort(left_iter, right_iter);
+            return;
+        }
+
+        // 对序列进行分区，返回枢轴的位置
+        auto pivot_iter = partition(left_iter, right_iter);
+
+        // 对枢轴左边的序列进行递归排序
         if (pivot_iter != left_iter)
         {
             quick_sort(left_iter, pivot_iter);
         }
-		// 对枢轴右边的序列进行递归排序
-		if (pivot_iter + 1 != right_iter)
+        // 对枢轴右边的序列进行递归排序
+        if (pivot_iter + 1 != right_iter)
         {
             quick_sort(pivot_iter + 1, right_iter);
         }
-
-	}
+    }
 
 }

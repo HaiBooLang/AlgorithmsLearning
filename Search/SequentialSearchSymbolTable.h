@@ -12,18 +12,18 @@ namespace Search
 		struct Node
 		{
 		public:
-			Node(const Key& key, const Value& value, std::unique_ptr<Node> next = nullptr)
+			Node(const Key &key, const Value &value, std::unique_ptr<Node> next = nullptr)
 				: key(key), value(value), next(std::move(next)) {}
 
-			std::unique_ptr<Node> next;	// ÄÚ´æ¶ÔÆë 64 Î»
+			std::unique_ptr<Node> next; // å†…å­˜å¯¹é½ 64 ä½
 			Key key;
 			Value value;
 		};
 
 	public:
-		std::optional<Value> get(const Key& key)
+		std::optional<Value> get(const Key &key)
 		{
-			for (Node* x = head.get(); x != nullptr; x = x->next.get())
+			for (Node *x = head.get(); x != nullptr; x = x->next.get())
 			{
 				if (key == x->key)
 				{
@@ -33,9 +33,9 @@ namespace Search
 			return std::nullopt;
 		}
 
-		void put(const Key& key, const Value& value)
+		void put(const Key &key, const Value &value)
 		{
-			for (Node* x = head.get(); x != nullptr; x = x->next.get())
+			for (Node *x = head.get(); x != nullptr; x = x->next.get())
 			{
 				if (key == x->key)
 				{
@@ -48,23 +48,27 @@ namespace Search
 			head = std::make_unique<Node>(key, value, std::move(head));
 		}
 
-		void deletes(const Key& key)
+		void deletes(const Key &key)
 		{
-			if (head == nullptr) return;
+			if (head == nullptr)
+				return;
 
-			if (head->key == key) {
+			if (head->key == key)
+			{
 				head = std::move(head->next);
 				return;
 			}
 
-			Node* preview = head.get();
-			Node* current = preview->next.get();
-			while (current != nullptr && current->key != key) {
+			Node *preview = head.get();
+			Node *current = preview->next.get();
+			while (current != nullptr && current->key != key)
+			{
 				preview = current;
 				current = current->next.get();
 			}
 
-			if (current != nullptr) {
+			if (current != nullptr)
+			{
 				preview->next.reset(current->next.release());
 			}
 		}
@@ -72,7 +76,7 @@ namespace Search
 		size_t size()
 		{
 			size_t count = 0;
-			for (Node* x = head.get(); x != nullptr; x = x->next.get())
+			for (Node *x = head.get(); x != nullptr; x = x->next.get())
 			{
 				++count;
 			}
@@ -81,7 +85,6 @@ namespace Search
 		}
 
 	private:
-
 		std::unique_ptr<Node> head;
 	};
 }

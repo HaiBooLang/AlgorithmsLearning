@@ -17,7 +17,7 @@ namespace Sort
     // 归并排序适用于数据量大，对稳定性有要求的场景，例如大规模数据的排序和处理。
 
     template <typename T>
-    std::vector<T> merge_sort(const std::vector<T>& c1, const std::vector<T>& c2) 
+    std::vector<T> merge_sort(const std::vector<T> &c1, const std::vector<T> &c2)
     {
         std::vector<T> result;
         // 预分配内存
@@ -27,16 +27,16 @@ namespace Sort
         auto iter2 = c2.begin();
 
         // 当两个容器都有元素时
-        while (iter1 != c1.end() && iter2 != c2.end()) 
+        while (iter1 != c1.end() && iter2 != c2.end())
         {
             // 如果容器1的当前元素小于或等于容器2的当前元素
-            if (*iter1 <= *iter2) 
+            if (*iter1 <= *iter2)
             {
                 // 将容器1的当前元素添加到结果中
                 result.push_back(*iter1);
                 ++iter1;
             }
-            else 
+            else
             {
                 // 否则，将容器2的当前元素添加到结果中
                 result.push_back(*iter2);
@@ -45,10 +45,10 @@ namespace Sort
         }
 
         // 如果容器1还有剩余元素，将它们添加到结果中
-        std::move(iter1, c1.end(), std::back_inserter(result));
+        std::copy(iter1, c1.end(), std::back_inserter(result));
 
         // 如果容器2还有剩余元素，将它们添加到结果中
-        std::move(iter2, c2.end(), std::back_inserter(result));
+        std::copy(iter2, c2.end(), std::back_inserter(result));
 
         return result;
     }
@@ -57,7 +57,7 @@ namespace Sort
     // std::vector<typename std::iterator_traits<Iterator>::value_type>
 
     template <typename T>
-    std::vector<T> merge_sort(typename std::vector<T>::iterator begin1, typename std::vector<T>::iterator end1, typename std::vector<T>::iterator begin2, typename std::vector<T>::iterator end2) 
+    std::vector<T> merge_sort(typename std::vector<T>::iterator begin1, typename std::vector<T>::iterator end1, typename std::vector<T>::iterator begin2, typename std::vector<T>::iterator end2)
     {
         std::vector<T> result;
         result.reserve(std::distance(begin1, end1) + std::distance(begin2, end2));
@@ -77,22 +77,21 @@ namespace Sort
                 result.push_back(*iter1);
                 iter1++;
             }
-
         }
 
-        std::move(iter1, end1, std::back_inserter(result));
-        std::move(iter2, end2, std::back_inserter(result));
+        std::copy(iter1, end1, std::back_inserter(result));
+        std::copy(iter2, end2, std::back_inserter(result));
 
         return result;
     }
 
-    // 原地归并排序（暂未实现）
+    // 原地归并排序
     // 原地归并排序是归并排序的一种变种，它试图在不使用额外空间的情况下进行排序。
     // 但是，由于需要进行复杂的元素交换，其时间复杂度为 O(n^2)，空间复杂度为 O(1)。
     // 原地归并排序适用于对空间使用有严格限制的场景。
 
     template <typename T>
-    void inplace_merge_sort(typename std::vector<T>::iterator begin, typename std::vector<T>::iterator middle, typename std::vector<T>::iterator end) 
+    void inplace_merge_sort(typename std::vector<T>::iterator begin, typename std::vector<T>::iterator middle, typename std::vector<T>::iterator end)
     {
         // 创建一个临时向量来存储原始数据
         std::vector<T> temp;
@@ -139,11 +138,10 @@ namespace Sort
 
         auto middle = begin + std::distance(begin, end) / 2;
 
-        top_down_merge_sort<T>(begin, std::next(middle));
+        top_down_merge_sort<T>(begin, middle);
         top_down_merge_sort<T>(middle, end);
 
         inplace_merge_sort<T>(begin, middle, end);
-
     }
 
     // 改进的自顶向下的归并排序函数
@@ -176,14 +174,17 @@ namespace Sort
     template <typename T>
     void down_top_merge_sort(typename std::vector<T>::iterator begin, typename std::vector<T>::iterator end)
     {
-        if (begin == end) return; // 如果范围为空，直接返回
+        if (begin == end)
+            return; // 如果范围为空，直接返回
 
         auto len = std::distance(begin, end);
 
         // 外层循环控制每次合并的元素个数
-        for (auto size = 1; size < len; size *= 2) {
+        for (auto size = 1; size < len; size *= 2)
+        {
             // 内层循环控制每次合并的起始位置
-            for (auto left = begin; left < end; left += 2 * size) {
+            for (auto left = begin; left < end; left += 2 * size)
+            {
                 auto middle = left + size;
                 auto right = std::min(left + 2 * size, end);
 
@@ -193,4 +194,3 @@ namespace Sort
         }
     }
 }
-

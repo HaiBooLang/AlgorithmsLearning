@@ -6,15 +6,16 @@
 
 #include "UnionFInd.h"
 
-namespace UnionFind 
+namespace UnionFind
 {
 
-    template<std::size_t N>
+    template <std::size_t N>
     class UnionFindArray : public UnionFind
     {
     private:
         std::unique_ptr<std::array<int, N>> parent;
         std::unique_ptr<std::array<int, N>> rank;
+
     public:
         explicit UnionFindArray();
         void Union(int p, int q);
@@ -23,15 +24,15 @@ namespace UnionFind
         int Root(int p);
     };
 
-    template<std::size_t N>
+    template <std::size_t N>
     inline UnionFindArray<N>::UnionFindArray()
-        :parent{ std::make_unique<std::array<int, N>>() }, rank{ std::make_unique<std::array<int, N>>() }
+        : parent{std::make_unique<std::array<int, N>>()}, rank{std::make_unique<std::array<int, N>>()}
     {
         std::iota(parent->begin(), parent->end(), 0);
         std::fill(rank->begin(), rank->end(), 1);
     }
 
-    template<std::size_t N>
+    template <std::size_t N>
     inline int UnionFindArray<N>::Root(int p)
     {
         while (p != (*parent)[p])
@@ -42,18 +43,19 @@ namespace UnionFind
         return p;
     }
 
-    template<std::size_t N>
+    template <std::size_t N>
     inline bool UnionFindArray<N>::Connected(int p, int q)
     {
         return Root(p) == Root(q);
     }
 
-    template<std::size_t N>
+    template <std::size_t N>
     inline void UnionFindArray<N>::Union(int p, int q)
     {
         int rootP = Root(p);
         int rootQ = Root(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ)
+            return;
         if ((*rank)[rootP] < (*rank)[rootQ])
         {
             (*parent)[rootP] = rootQ;
@@ -66,12 +68,13 @@ namespace UnionFind
         }
     }
 
-    template<std::size_t N>
+    template <std::size_t N>
     inline void UnionFindArray<N>::Delete(int p, int q)
     {
         int rootP = Root(p);
         int rootQ = Root(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ)
+            return;
         if ((*rank)[rootP] < (*rank)[rootQ])
         {
             (*parent)[rootP] = rootQ;

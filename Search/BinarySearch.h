@@ -9,8 +9,8 @@ namespace Search
 
     // 定义一个名为 binary_search 的模板函数
     // 它接受一个随机访问范围（例如，数组或向量）和一个要查找的值
-    template<std::ranges::random_access_range Container, class T>
-    constexpr auto binary_search(Container& c, const T& value)
+    template <std::ranges::random_access_range Container, class T>
+    constexpr auto binary_search(Container &c, const T &value)
     {
         // 获取容器的开始和结束迭代器
         auto first = std::begin(c);
@@ -43,8 +43,8 @@ namespace Search
         return last;
     }
 
-    template<std::random_access_iterator InputIt, class T>
-    constexpr InputIt binary_search(InputIt first, InputIt last, const T& value)
+    template <std::random_access_iterator InputIt, class T>
+    constexpr InputIt binary_search(InputIt first, InputIt last, const T &value)
     {
         while (first != last)
         {
@@ -67,34 +67,34 @@ namespace Search
         return last;
     }
 
-    //template<class T, std::size_t N>
-    //constexpr T* binary_search(T(&arr)[N], const T& value)
+    // template<class T, std::size_t N>
+    // constexpr T* binary_search(T(&arr)[N], const T& value)
     //{
-    //    return binary_search(std::begin(arr), std::end(arr), value);
-    //}
+    //     return binary_search(std::begin(arr), std::end(arr), value);
+    // }
 
-    //template<class T>
-    //constexpr typename std::vector<T>::iterator binary_search(std::vector<T>& vec, const T& value)
+    // template<class T>
+    // constexpr typename std::vector<T>::iterator binary_search(std::vector<T>& vec, const T& value)
     //{
-    //    return binary_search(vec.begin(), vec.end(), value);
-    //}
+    //     return binary_search(vec.begin(), vec.end(), value);
+    // }
 
-    //template<class T, std::size_t N>
-    //constexpr typename std::array<T, N>::iterator binary_search(std::array<T, N>& arr, const T& value)
+    // template<class T, std::size_t N>
+    // constexpr typename std::array<T, N>::iterator binary_search(std::array<T, N>& arr, const T& value)
     //{
-    //    return binary_search(arr.begin(), arr.end(), value);
-    //}
+    //     return binary_search(arr.begin(), arr.end(), value);
+    // }
 
-    //template<class T>
-    //constexpr typename std::list<T>::iterator binary_search(std::list<T>& lst, const T& value)
+    // template<class T>
+    // constexpr typename std::list<T>::iterator binary_search(std::list<T>& lst, const T& value)
     //{
-    //    return binary_search(lst.begin(), lst.end(), value);
-    //}
+    //     return binary_search(lst.begin(), lst.end(), value);
+    // }
 
-    //template<class T>
-    //constexpr typename std::deque<T>::iterator binary_search(std::deque<T>& deq, const T& value)
+    // template<class T>
+    // constexpr typename std::deque<T>::iterator binary_search(std::deque<T>& deq, const T& value)
     //{
-    //    return binary_search(deq.begin(), deq.end(), value);
-    //}
+    //     return binary_search(deq.begin(), deq.end(), value);
+    // }
 
 }

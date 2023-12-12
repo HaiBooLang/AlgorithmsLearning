@@ -14,6 +14,7 @@ namespace UnionFind
         std::size_t size = 0;
         std::vector<int> parent;
         std::vector<int> rank;
+
     public:
         explicit UnionFindVector(std::size_t N);
         void Union(int p, int q);
@@ -23,7 +24,7 @@ namespace UnionFind
     };
 
     inline UnionFindVector::UnionFindVector(std::size_t N)
-        : size{ N }, parent(N), rank(N, 1)
+        : size{N}, parent(N), rank(N, 1)
     {
         std::iota(parent.begin(), parent.end(), 0);
     }
@@ -47,13 +48,15 @@ namespace UnionFind
     {
         int rootP = Root(p);
         int rootQ = Root(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ)
+            return;
         if (rank[rootP] < rank[rootQ])
         {
             parent[rootP] = rootQ;
             rank[rootQ] += rank[rootP];
         }
-        else {
+        else
+        {
             parent[rootQ] = rootP;
             rank[rootP] += rank[rootQ];
         }
@@ -63,7 +66,8 @@ namespace UnionFind
     {
         int rootP = Root(p);
         int rootQ = Root(q);
-        if (rootP == rootQ) return;
+        if (rootP == rootQ)
+            return;
         if (rank[rootP] < rank[rootQ])
         {
             parent[rootP] = rootP;

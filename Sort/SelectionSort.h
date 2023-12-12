@@ -12,8 +12,8 @@ namespace Sort
     // 选择排序的空间复杂度为 O(1)，因为只需要常数级别的临时变量。
     // 选择排序适用于数据量不大的场景，因为它的时间复杂度较高。
 
-    template<std::ranges::random_access_range Container>
-    inline void selection_sort(Container& c)
+    template <std::ranges::random_access_range Container>
+    inline void selection_sort(Container &c)
     {
         // 对容器中的每个元素进行循环
         for (auto i = std::begin(c); i != std::end(c); ++i)
@@ -30,7 +30,7 @@ namespace Sort
 
     // 选择排序的另一种实现，接受迭代器作为参数，可以对任何支持迭代器的容器进行排序。
 
-    template<std::random_access_iterator InputIt>
+    template <std::random_access_iterator InputIt>
     inline void selection_sort(InputIt first, InputIt last)
     {
         for (auto i = first; i != last; ++i)

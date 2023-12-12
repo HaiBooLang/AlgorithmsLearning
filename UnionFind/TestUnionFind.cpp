@@ -4,7 +4,6 @@
 #include "UnionFindVector.h"
 #include "TestUnionFind.h"
 
-
 void UnionFind::test_union_find(int times)
 {
     const int size = 100000;
@@ -18,23 +17,28 @@ void UnionFind::test_union_find(int times)
 
     union_total_time = 0;
     isconnected_total_time = 0;
-    for (int i = 0; i < times; ++i) {
+    for (int i = 0; i < times; ++i)
+    {
         UnionFindUnique uf(size);
 
         duration = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
+        {
             int p = dist(gen);
             int q = dist(gen);
-            duration += measure_time([&]() { uf.Union(p, q); });
+            duration += measure_time([&]()
+                                     { uf.Union(p, q); });
         }
         std::cout << "UnionFindUnique: Time taken for Union: " << duration << " ns" << std::endl;
         union_total_time += duration;
 
         duration = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
+        {
             int p = dist(gen);
             int q = dist(gen);
-            duration += measure_time([&]() { uf.Connected(p, q); });
+            duration += measure_time([&]()
+                                     { uf.Connected(p, q); });
         }
         std::cout << "UnionFindUnique: Time taken for connected: " << duration << " ns" << std::endl;
         isconnected_total_time += duration;
@@ -44,23 +48,28 @@ void UnionFind::test_union_find(int times)
 
     union_total_time = 0;
     isconnected_total_time = 0;
-    for (int i = 0; i < times; ++i) {
+    for (int i = 0; i < times; ++i)
+    {
         UnionFindVector uf(size);
 
         duration = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
+        {
             int p = dist(gen);
             int q = dist(gen);
-            duration += measure_time([&]() { uf.Union(p, q); });
+            duration += measure_time([&]()
+                                     { uf.Union(p, q); });
         }
         std::cout << "UnionFindVector: Time taken for Union: " << duration << " ns" << std::endl;
         union_total_time += duration;
 
         duration = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
+        {
             int p = dist(gen);
             int q = dist(gen);
-            duration += measure_time([&]() { uf.Connected(p, q); });
+            duration += measure_time([&]()
+                                     { uf.Connected(p, q); });
         }
         std::cout << "UnionFindVector: Time taken for connected: " << duration << " ns" << std::endl;
         isconnected_total_time += duration;
@@ -70,23 +79,28 @@ void UnionFind::test_union_find(int times)
 
     union_total_time = 0;
     isconnected_total_time = 0;
-    for (int i = 0; i < times; ++i) {
+    for (int i = 0; i < times; ++i)
+    {
         UnionFindArray<size> uf{};
 
         duration = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
+        {
             int p = dist(gen);
             int q = dist(gen);
-            duration += measure_time([&]() { uf.Union(p, q); });
+            duration += measure_time([&]()
+                                     { uf.Union(p, q); });
         }
         std::cout << "UnionFindArray: Time taken for Union: " << duration << " ns" << std::endl;
         union_total_time += duration;
 
         duration = 0;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
+        {
             int p = dist(gen);
             int q = dist(gen);
-            duration += measure_time([&]() { uf.Connected(p, q); });
+            duration += measure_time([&]()
+                                     { uf.Connected(p, q); });
         }
         std::cout << "UnionFindArray: Time taken for connected: " << duration << " ns" << std::endl;
         isconnected_total_time += duration;
